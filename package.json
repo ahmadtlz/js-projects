@@ -1,0 +1,25 @@
+{
+  "name": "js-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve src",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@testing-library/dom": "^8.14.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "babel-jest": "^28.1.1",
+    "jest": "^28.1.1",
+    "serve": "^13.0.2"
+  },
+  "dependencies": {
+    "regenerator-runtime": "^0.13.9"
+  }
+}

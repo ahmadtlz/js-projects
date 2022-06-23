@@ -17,6 +17,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "babel-jest": "^28.1.1",
     "jest": "^28.1.1",
+    "jsdom": "^20.0.0",
     "serve": "^13.0.2"
   },
   "dependencies": {

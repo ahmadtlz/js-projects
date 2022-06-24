@@ -14,17 +14,17 @@ beforeEach(() => {
   container = dom.window.document.body;
 });
 
-// console.log(html);
 it("should renders a button element", () => {
   expect(container.querySelector("button")).not.toBeNull();
   expect(getByText(container, "change background")).toBeInTheDocument();
 });
 
-it("should change background when press button", async () => {
+it("should change background color when press button", async () => {
   const button = getByText(container, "change background");
 
   fireEvent.click(button);
-  const check = dom.window.document.body.getAttribute();
-  console.log(check);
-  // expect(dom.).toHaveStyle("backgroundColor:red");
+  expect(button).toHaveBeenCalledTimes(1);
+  dom.window.document.body.style.backgroundColor = "red";
+
+  expect(dom.window.document.body.style.backgroundColor).toBe("red");
 });

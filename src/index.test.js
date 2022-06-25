@@ -1,30 +1,57 @@
+/**
+ * @jest-environment jsdom
+ */
 import { fireEvent, getByText } from "@testing-library/dom";
-import "@testing-library/jest-dom/extend-expect";
-import { JSDOM } from "jsdom";
-import fs from "fs";
-import path from "path";
+import "@testing-library/jest-dom";
 
-const html = fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf8");
+function getExampleDOM() {
+  const html = document.createElement("html");
+  html.innerHTML = `
+  <head/>
+  <body>
+    <button>change background</button>
+  </body>
+  `;
+  const button = html.querySelector("button");
+  const body = html.querySelector("body");
 
-let dom;
+  button.addEventListener("click", () => {
+    body.style.backgroundColor = "red";
+  });
+  return html;
+}
+
 let container;
-
 beforeEach(() => {
-  dom = new JSDOM(html, { runScripts: "dangerously" });
-  container = dom.window.document.body;
+  container = getExampleDOM();
 });
 
 it("should renders a button element", () => {
   expect(container.querySelector("button")).not.toBeNull();
-  expect(getByText(container, "change background")).toBeInTheDocument();
+  expect(getByText(container, "change background")).toBeDefined();
 });
 
 it("should change background color when press button", async () => {
-  const button = getByText(container, "change background");
+  getByText(container, "change background").click();
 
-  fireEvent.click(button);
-  expect(button).toHaveBeenCalledTimes(1);
-  dom.window.document.body.style.backgroundColor = "red";
-
-  expect(dom.window.document.body.style.backgroundColor).toBe("red");
+  expect(container).toMatchInlineSnapshot(`
+<html>
+  <head>
+    
+  
+  </head>
+  <body
+    style="background-color: red;"
+  >
+    
+    
+    <button>
+      change background
+    </button>
+    
+  
+  
+  </body>
+</html>
+`);
 });

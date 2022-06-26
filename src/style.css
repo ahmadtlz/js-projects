@@ -45,18 +45,9 @@ body {
 }
 
 .modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.35);
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
+  display: none;
   pointer-events: none;
-  transition: all 0.2s ease-in-out;
 }
 
 .modal {
@@ -76,6 +67,16 @@ body {
 }
 
 .show {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  height: 100vh;
+  width: 100vw;
   opacity: 1;
   pointer-events: auto;
+  display: flex;
+  transition: all 0.2s ease-in-out;
+  align-items: center;
+  justify-content: center;
 }
